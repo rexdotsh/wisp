@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}wisp{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💨</text></svg>">
+    <style>
+        :root {
+            --bg-color: #111111;
+            --text-color: #f0f0f0;
+            --accent-color: #58a6ff;
+            --border-color: #333;
+            --card-bg: #1a1a1a;
+            --code-bg: #1e1e1e;
+            --scrollbar-track: #1a1a1a;
+            --scrollbar-thumb: #444;
+            --scrollbar-thumb-hover: #555;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+
+        /* firefox scrollbar */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+
+        body {
+            font-family: 'Geist Mono', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+        .section {
+            margin-bottom: 2rem;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        code {
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.9rem;
+        }
+
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 3px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #333;
+            scrollbar-width: thin;
+        }
+
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            text-align: center;
+            color: #aaa;
+        }
+
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .service-item {
+            padding: 0.5rem;
+            background-color: var(--code-bg);
+            border-radius: 3px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .nav-links a {
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            background-color: var(--card-bg);
+            transition: background-color 0.2s;
+        }
+
+        .nav-links a:hover {
+            background-color: var(--border-color);
+            text-decoration: none;
+        }
+    </style>
+    {% block additional_styles %}{% endblock %}
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">wisp</div>
+            <div class="tagline">{% block tagline %}Profile Picture API{% endblock %}</div>
+        </header>
+
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/docs">Documentation</a>
+            <a href="/stats">Stats</a>
+            <a href="https://github.com/rexdotsh/wisp">GitHub</a>
+        </div>
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            Wisp &middot; <a href="https://github.com/rexdotsh/wisp" target="_blank">GitHub</a> &middot; {% block footer_links %}<a href="/docs">Documentation</a>{% endblock %}
+        </footer>
+    </div>
+</body>
+</html>
