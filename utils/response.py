@@ -68,4 +68,8 @@ def format_error_response(error_code, message):
     if request.args.get("raw", "false").lower() in ["true", "1", "yes"]:
         return jsonify({"error": message}), error_code
     else:
-        return format_default_avatar_response()
+        # only return default avatar for 404 errors (user not found)
+        if error_code == 404:
+            return format_default_avatar_response()
+        # return json error for all other error codes
+        return jsonify({"error": message}), error_code
