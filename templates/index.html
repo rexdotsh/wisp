@@ -19,40 +19,40 @@
             --scrollbar-thumb: #444;
             --scrollbar-thumb-hover: #555;
         }
-        
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-        
+
         /* custom scrollbar */
         ::-webkit-scrollbar {
             width: 10px;
             height: 10px;
         }
-        
+
         ::-webkit-scrollbar-track {
             background: var(--scrollbar-track);
             border-radius: 5px;
         }
-        
+
         ::-webkit-scrollbar-thumb {
             background: var(--scrollbar-thumb);
             border-radius: 5px;
             transition: background 0.2s ease;
         }
-        
+
         ::-webkit-scrollbar-thumb:hover {
             background: var(--scrollbar-thumb-hover);
         }
-        
+
         /* firefox scrollbar */
         html {
             scrollbar-width: thin;
             scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
         }
-        
+
         body {
             font-family: 'Geist Mono', monospace;
             line-height: 1.6;
@@ -61,53 +61,53 @@
             color: var(--text-color);
             background-color: var(--bg-color);
         }
-        
+
         .container {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem;
         }
-        
+
         .main-header {
             margin-bottom: 3rem;
             text-align: center;
         }
-        
+
         .logo {
             font-size: 3rem;
             font-weight: 700;
             letter-spacing: -1px;
         }
-        
+
         .tagline {
             font-size: 1rem;
             font-weight: 400;
             color: #aaa;
             margin-top: 0.5rem;
         }
-        
+
         .section {
             margin-bottom: 3rem;
         }
-        
+
         h1, h2, h3, h4 {
             font-weight: 600;
             letter-spacing: -0.5px;
         }
-        
+
         h2 {
             font-size: 1.5rem;
             margin-bottom: 1rem;
             padding-bottom: 0.5rem;
             border-bottom: 1px solid var(--border-color);
         }
-        
+
         h3 {
             font-size: 1.2rem;
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
         }
-        
+
         code {
             background-color: var(--code-bg);
             padding: 0.2rem 0.4rem;
@@ -115,7 +115,7 @@
             font-family: 'Geist Mono', monospace;
             font-size: 0.9rem;
         }
-        
+
         pre {
             background-color: var(--code-bg);
             padding: 1rem;
@@ -125,18 +125,18 @@
             border: 1px solid #333;
             scrollbar-width: thin;
         }
-        
+
         .avatar-example {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
             gap: 1rem;
             margin-top: 1rem;
         }
-        
+
         .avatar-card {
             text-align: center;
         }
-        
+
         .avatar-card img {
             width: 60px;
             height: 60px;
@@ -145,18 +145,18 @@
             border: 2px solid var(--border-color);
             transition: transform 0.2s, border-color 0.2s;
         }
-        
+
         .avatar-card:hover img {
             transform: scale(1.05);
             border-color: var(--accent-color);
         }
-        
+
         .avatar-card p {
             margin-top: 0.5rem;
             font-size: 0.8rem;
             color: #aaa;
         }
-        
+
         footer {
             margin-top: 3rem;
             padding-top: 1rem;
@@ -165,24 +165,24 @@
             text-align: center;
             color: #aaa;
         }
-        
+
         a {
             color: var(--accent-color);
             text-decoration: none;
             transition: color 0.2s;
         }
-        
+
         a:hover {
             text-decoration: underline;
         }
-        
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
             gap: 0.5rem;
             margin-top: 1rem;
         }
-        
+
         .service-item {
             padding: 0.5rem;
             background-color: var(--code-bg);
@@ -190,22 +190,22 @@
             text-align: center;
             font-size: 0.9rem;
         }
-        
+
         p {
             margin-bottom: 1rem;
         }
-        
+
         ul {
             margin-left: 1.5rem;
             margin-bottom: 1rem;
         }
-        
+
         .nav-links {
             display: flex;
             justify-content: center;
             margin-bottom: 2rem;
         }
-        
+
         .nav-links a {
             margin: 0 1rem;
             padding: 0.5rem 1rem;
@@ -213,12 +213,12 @@
             background-color: var(--card-bg);
             transition: background-color 0.2s;
         }
-        
+
         .nav-links a:hover {
             background-color: var(--border-color);
             text-decoration: none;
         }
-        
+
         .quick-start {
             background-color: var(--card-bg);
             padding: 1.5rem;
@@ -226,14 +226,14 @@
             border: 1px solid var(--border-color);
             margin-top: 1rem;
         }
-        
+
         .quick-start h3 {
             margin-top: 0;
             margin-bottom: 1.2rem;
             font-size: 1.1rem;
             color: var(--accent-color);
         }
-        
+
         .quick-start code {
             display: inline-block;
             margin: 0.3rem 0;
@@ -244,21 +244,21 @@
             font-size: 0.9rem;
             border: 1px solid #444;
         }
-        
+
         .quick-start p {
             margin-bottom: 0.5rem;
             font-weight: 500;
             color: #aaa;
             font-size: 0.9rem;
         }
-        
+
         .quick-start .example {
             margin-left: 1rem;
             margin-bottom: 1rem;
             font-size: 0.9rem;
             color: #aaa;
         }
-        
+
         .quick-start .docs-link {
             margin-top: 1.2rem;
             padding-top: 0.8rem;
@@ -266,27 +266,27 @@
             font-size: 0.9rem;
             border-top: 1px solid var(--border-color);
         }
-        
+
         .quick-start .endpoint {
             margin-bottom: 1.2rem;
         }
-        
+
         .quick-start .arrow {
             margin-left: 0.3rem;
             transition: transform 0.2s;
         }
-        
+
         .quick-start a:hover .arrow {
             transform: translateX(3px);
         }
-        
+
         .tooltip {
             display: inline-flex;
             align-items: center;
             margin-left: 0.5rem;
             position: relative;
         }
-        
+
         .tooltip-icon {
             display: inline-flex;
             align-items: center;
@@ -299,7 +299,7 @@
             font-size: 0.7rem;
             cursor: help;
         }
-        
+
         .tooltip-text {
             position: absolute;
             bottom: 100%;
@@ -319,7 +319,7 @@
             z-index: 10;
             pointer-events: none;
         }
-        
+
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
@@ -332,7 +332,7 @@
             <div class="logo">wisp</div>
             <div class="tagline">Profile Picture API</div>
         </header>
-        
+
         <div class="nav-links">
             <a href="/">Home</a>
             <a href="/docs">Documentation</a>
@@ -346,10 +346,10 @@
                 Wisp is a lightweight API that allows you to fetch profile pictures from various services.
                 It provides a unified interface for retrieving avatars with built-in caching.
             </p>
-            
+
             <div class="quick-start">
                 <h3>Quick Start</h3>
-                
+
                 <div class="endpoint">
                     <p>Get a profile picture:</p>
                     <code>GET /{service}/{username}</code>
@@ -359,12 +359,12 @@
                     </div>
                     <div class="example">Example: <code>GET /github/octocat</code></div>
                 </div>
-                
+
                 <div class="endpoint">
                     <p>Batch request:</p>
                     <code>GET /batch?github=octocat&twitter=twitter</code>
                 </div>
-                
+
                 <div class="docs-link">
                     <a href="/docs">View full API documentation <span class="arrow">→</span></a>
                 </div>
@@ -421,4 +421,4 @@
         </footer>
     </div>
 </body>
-</html> 
+</html>

@@ -64,7 +64,5 @@ class BaseService(ABC):
             500: f"Internal server error while accessing {self.name}",
         }
 
-        error_message = message or error_messages.get(
-            status_code, f"Error accessing {self.name}"
-        )
+        error_message = message or error_messages.get(status_code, f"Error accessing {self.name}")
         return None, None, error_message

@@ -5,13 +5,7 @@ from typing import Any, Dict, Optional, Union
 
 import redis
 
-from cache.utils import (
-    compress_data,
-    decode_binary_data,
-    decompress_data,
-    encode_binary_data,
-    get_ttl,
-)
+from cache.utils import compress_data, decode_binary_data, decompress_data, encode_binary_data, get_ttl
 from config import Config
 
 
@@ -29,6 +23,9 @@ class RedisCache:
         if not self.redis.exists(self.stats_key):
             self.redis.hmset(self.stats_key, {"hits": 0, "misses": 0, "size": 0})
 
+        # Recalculate size on initialization to ensure accuracy
+        self._recalculate_size()
+
     def _get_cache_key(self, key: str) -> str:
         """Get the full cache key with prefix."""
         return f"{self.prefix}{key}"
@@ -36,6 +33,12 @@ class RedisCache:
     def _get_metadata_key(self, key: str) -> str:
         """Get the full metadata key with prefix."""
         return f"{self.metadata_prefix}{key}"
+
+    def _recalculate_size(self) -> None:
+        """Recalculate the size based on actual keys in the cache."""
+        cache_keys = self.redis.keys(f"{self.prefix}*")
+        size = len(cache_keys)
+        self.redis.hset(self.stats_key, "size", size)
 
     def get(self, key: str) -> Optional[Dict[str, Any]]:
         """
@@ -81,6 +84,9 @@ class RedisCache:
         cache_key = self._get_cache_key(key)
         metadata_key = self._get_metadata_key(key)
 
+        # Check if key exists before setting it
+        key_exists = self.redis.exists(cache_key)
+
         current_time = time.time()
         expires_at = current_time + ttl
 
@@ -95,8 +101,8 @@ class RedisCache:
         metadata = {"stored_at": current_time, "expires_at": expires_at}
         self.redis.setex(metadata_key, ttl, json.dumps(metadata))
 
-        # Update stats
-        if not self.redis.exists(cache_key):
+        # Update size counter only if this is a new key
+        if not key_exists:
             self.redis.hincrby(self.stats_key, "size", 1)
 
         return True
@@ -211,6 +217,9 @@ class RedisCache:
         Returns:
             Dict[str, int]: Cache statistics
         """
+        # Periodically recalculate size to ensure accuracy
+        self._recalculate_size()
+
         stats = self.redis.hgetall(self.stats_key)
 
         # Convert bytes to strings and values to integers
