@@ -7,6 +7,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-EXPOSE ${PORT}
+EXPOSE $PORT
 
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:${PORT}", "--workers", "4", "--timeout", "120", "--preload", "--log-level", "info", "--access-logfile", "/dev/stdout", "--error-logfile", "/dev/stderr"]
+CMD gunicorn app:app --bind 0.0.0.0:$PORT --workers 4 --timeout 120 --preload --log-level info --access-logfile /dev/stdout --error-logfile /dev/stderr
