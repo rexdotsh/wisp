@@ -24,6 +24,7 @@ def get_service(service_name=None):
         "google": GoogleService(),
         "duckduckgo": DuckDuckGoService(),
         "gravatar": GravatarService(),
+        "x": TwitterService(),
     }
 
     if service_name is None:
