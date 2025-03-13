@@ -5,7 +5,7 @@ from flask_cors import CORS
 
 from cache import cache
 from config import Config
-from services import get_service
+from services import get_service, get_unique_services
 from utils.response import format_error_response, format_response
 from utils.validation import get_request_params, validate_username
 
@@ -24,7 +24,7 @@ def index():
     Returns:
         HTML page with documentation
     """
-    services = list(get_service().keys()) if callable(get_service) else []
+    services = get_unique_services()
 
     return render_template("index.html", services=services)
 
@@ -37,7 +37,7 @@ def docs():
     Returns:
         HTML page with detailed API documentation
     """
-    services = list(get_service().keys()) if callable(get_service) else []
+    services = get_unique_services()
 
     return render_template("docs.html", services=services)
 
