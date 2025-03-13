@@ -139,10 +139,15 @@ def batch_profile_pictures():
 
         if cached_data:
             cache_metadata = cache.get_metadata(cache_key)
+            image_url = cached_data.get("image_url")
+            if not image_url:
+                results[service] = {"error": f"Avatar not found for {username} on {service}"}
+                continue
+
             results[service] = {
                 "username": username,
                 "service": service,
-                "image_url": cached_data.get("image_url"),
+                "image_url": image_url,
                 "cache": cache_metadata,
             }
             continue
@@ -151,6 +156,10 @@ def batch_profile_pictures():
 
         if error:
             results[service] = {"error": error}
+            continue
+
+        if not image_url:
+            results[service] = {"error": f"Avatar not found for {username} on {service}"}
             continue
 
         cache.set(cache_key, {"image_data": image_data, "image_url": image_url}, ttl)

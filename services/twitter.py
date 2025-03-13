@@ -31,6 +31,10 @@ class TwitterService(AvatarProvider):
                 soup = BeautifulSoup(response.text, "html.parser")
                 avatar_url = get_meta_content(soup, "og:image")
 
+                # validate the avatar url
+                if not avatar_url or avatar_url.startswith("undefined"):
+                    return None
+
                 # get larger image if available
                 if avatar_url and avatar_url.endswith("_200x200.jpg"):
                     avatar_url = avatar_url.replace("_200x200.jpg", "_400x400.jpg")
