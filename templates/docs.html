@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wisp - API Documentation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #111111;
+            --text-color: #f0f0f0;
+            --accent-color: #58a6ff;
+            --border-color: #333;
+            --card-bg: #1a1a1a;
+            --code-bg: #1e1e1e;
+            --scrollbar-track: #1a1a1a;
+            --scrollbar-thumb: #444;
+            --scrollbar-thumb-hover: #555;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--scrollbar-track);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--scrollbar-thumb);
+            border-radius: 5px;
+            transition: background 0.2s ease;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--scrollbar-thumb-hover);
+        }
+        
+        /* firefox scrollbar */
+        html {
+            scrollbar-width: thin;
+            scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+        }
+        
+        body {
+            font-family: 'Geist Mono', monospace;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .main-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        .tagline {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+        
+        .section {
+            margin-bottom: 3rem;
+        }
+        
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background-color: var(--code-bg);
+            padding: 0.2rem 0.4rem;
+            border-radius: 3px;
+            font-family: 'Geist Mono', monospace;
+            font-size: 0.9rem;
+        }
+        
+        pre {
+            background-color: var(--code-bg);
+            padding: 1rem;
+            border-radius: 3px;
+            overflow-x: auto;
+            margin: 1rem 0;
+            border: 1px solid #333;
+            scrollbar-width: thin;
+        }
+        
+        .endpoint {
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            background-color: var(--card-bg);
+            border-radius: 5px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .endpoint h3 {
+            margin-top: 0;
+            font-size: 1.3rem;
+        }
+        
+        .endpoint h4 {
+            margin-top: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #aaa;
+        }
+        
+        .endpoint pre {
+            font-size: 0.85rem;
+            padding: 1rem;
+            background-color: var(--code-bg);
+            border-radius: 3px;
+            overflow-x: auto;
+        }
+        
+        footer {
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.9rem;
+            text-align: center;
+            color: #aaa;
+        }
+        
+        a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+        
+        .service-item {
+            padding: 0.5rem;
+            background-color: var(--code-bg);
+            border-radius: 3px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .nav-links a {
+            margin: 0 1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 3px;
+            background-color: var(--card-bg);
+            transition: background-color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--border-color);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header">
+            <div class="logo">wisp</div>
+            <div class="tagline">API Documentation</div>
+        </header>
+        
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/docs">Documentation</a>
+            <a href="/stats">Stats</a>
+            <a href="https://github.com/rexdotsh/wisp">GitHub</a>
+        </div>
+
+        <section class="section">
+            <h2>Endpoints</h2>
+            
+            <div class="endpoint">
+                <h3>Get Profile Picture</h3>
+                <code>GET /{service}/{username}</code>
+                <p>Returns the profile picture for the specified username from the given service.</p>
+                
+                <h4>Parameters</h4>
+                <ul>
+                    <li><code>service</code> - The service name (github, twitter, etc.)</li>
+                    <li><code>username</code> - The username to get the profile picture for</li>
+                </ul>
+                
+                <h4>Query Parameters</h4>
+                <ul>
+                    <li><code>raw</code> - If true, return JSON data instead of the image (default: false)</li>
+                    <li><code>ttl</code> - Custom cache TTL in seconds</li>
+                </ul>
+                
+                <h4>Example</h4>
+                <p><code>GET /github/octocat</code> - Returns the GitHub avatar for octocat</p>
+                <p><code>GET /github/octocat?raw=true</code> - Returns JSON data with the avatar URL</p>
+                
+                <h4>Fallback Behavior</h4>
+                <p>If a profile picture is not found, a default fallback image is returned instead of a 404 error.</p>
+                
+                <h4>JSON Response (with raw=true)</h4>
+                <pre>{
+  "username": "octocat",
+  "service": "github",
+  "image_url": "https://avatars.githubusercontent.com/u/583231?v=4",
+  "cache": {
+    "status": "miss"
+  }
+}</pre>
+
+                <h4>Cache Hit Response</h4>
+                <pre>{
+  "username": "octocat",
+  "service": "github",
+  "image_url": "https://avatars.githubusercontent.com/u/583231?v=4",
+  "cache": {
+    "status": "hit",
+    "created_at": "2023-03-13T07:42:00Z",
+    "expires_at": "2023-03-14T07:42:00Z",
+    "ttl": 86400
+  }
+}</pre>
+
+                <h4>Status Codes</h4>
+                <ul>
+                    <li><code>200</code> - Success (also returned when using fallback image)</li>
+                    <li><code>400</code> - Invalid service or username</li>
+                </ul>
+            </div>
+            
+            <div class="endpoint">
+                <h3>Batch Request</h3>
+                <code>GET /batch?github=octocat&twitter=twitter</code>
+                <p>Fetch multiple profile pictures in a single request.</p>
+                
+                <h4>Query Parameters</h4>
+                <ul>
+                    <li><code>{service}={username}</code> - Multiple service-username pairs</li>
+                    <li><code>ttl</code> - Custom cache TTL in seconds</li>
+                </ul>
+                
+                <h4>Example</h4>
+                <p><code>GET /batch?github=octocat&twitter=twitter</code></p>
+                
+                <h4>Fallback Behavior</h4>
+                <p>For services or usernames that don't have a profile picture, the response will include an error message in the JSON.</p>
+                
+                <h4>JSON Response</h4>
+                <pre>{
+  "github": {
+    "username": "octocat",
+    "service": "github",
+    "image_url": "https://avatars.githubusercontent.com/u/583231?v=4",
+    "cache": {
+      "status": "miss"
+    }
+  },
+  "twitter": {
+    "username": "twitter",
+    "service": "twitter",
+    "image_url": "https://pbs.twimg.com/profile_images/1488548719062654976/u6qfBBkF_400x400.jpg",
+    "cache": {
+      "status": "miss"
+    }
+  }
+}</pre>
+
+                <h4>Status Codes</h4>
+                <ul>
+                    <li><code>200</code> - Success (even if some profile pictures are not found)</li>
+                    <li><code>400</code> - No service-username pairs provided</li>
+                </ul>
+            </div>
+            
+            <div class="endpoint">
+                <h3>Health Check</h3>
+                <code>GET /health</code>
+                <p>Check if the API is running.</p>
+                
+                <h4>JSON Response</h4>
+                <pre>{
+  "status": "ok",
+  "version": "1.0.0"
+}</pre>
+            </div>
+            
+            <div class="endpoint">
+                <h3>Cache Statistics</h3>
+                <code>GET /stats</code>
+                <p>Get cache statistics.</p>
+                
+                <h4>JSON Response</h4>
+                <pre>{
+  "cache": {
+    "type": "memory",
+    "stats": {
+      "hits": 42,
+      "misses": 18,
+      "size": 10
+    }
+  }
+}</pre>
+            </div>
+            
+            <div class="endpoint">
+                <h3>Invalidate Cache</h3>
+                <code>GET /invalidate-cache/{service}/{username}</code>
+                <p>Invalidate the cache for a specific service and username.</p>
+                
+                <h4>Parameters</h4>
+                <ul>
+                    <li><code>service</code> - The service name (github, twitter, etc.)</li>
+                    <li><code>username</code> - The username to invalidate cache for</li>
+                </ul>
+                
+                <h4>Example</h4>
+                <p><code>GET /invalidate-cache/github/octocat</code></p>
+                
+                <h4>JSON Response</h4>
+                <pre>{
+  "status": "ok",
+  "message": "Cache invalidated for github:octocat"
+}</pre>
+
+                <h4>Status Codes</h4>
+                <ul>
+                    <li><code>200</code> - Success</li>
+                    <li><code>400</code> - Invalid service or username</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Supported Services</h2>
+            <p>Wisp supports retrieving profile pictures from the following services:</p>
+            
+            <div class="services-grid">
+                {% for service in services %}
+                    <div class="service-item">
+                        <a href="/{{ service }}/example">{{ service }}</a>
+                    </div>
+                {% endfor %}
+            </div>
+        </section>
+
+        <footer>
+            Wisp Profile Picture API &middot; <a href="https://github.com/rexdotsh/wisp" target="_blank">GitHub</a> &middot; <a href="/">Home</a>
+        </footer>
+    </div>
+</body>
+</html> 

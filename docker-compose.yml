@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT:-5000}:${PORT:-5000}"
+    environment:
+      - PORT=${PORT:-5000}
+      - DEBUG=${DEBUG:-False}
+      - SECRET_KEY=${SECRET_KEY:-dev-key-change-in-production}
+      - CACHE_TYPE=${CACHE_TYPE:-memory}
+      - CACHE_DEFAULT_TTL=${CACHE_DEFAULT_TTL:-3600}
+      - CACHE_TTL_MIN=${CACHE_TTL_MIN:-3600}
+      - CACHE_TTL_MAX=${CACHE_TTL_MAX:-2419200}
+      - CACHE_COMPRESSION=${CACHE_COMPRESSION:-True}
+      - REDIS_URL=${REDIS_URL:-redis://localhost:6379/0}
+      - AVATAR_TIMEOUT=${AVATAR_TIMEOUT:-10000}
+    restart: unless-stopped

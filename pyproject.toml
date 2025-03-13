@@ -1,0 +1,13 @@
+[project]
+name = "wisp"
+version = "0.1.0"
+description = "Wisp - A profile picture fetcher"
+requires-python = ">=3.8"
+
+[tool.ruff]
+force-exclude = true
+line-length = 120
+
+[tool.isort]
+profile = "black"
+line_length = 120
