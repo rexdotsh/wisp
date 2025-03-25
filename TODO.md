@@ -1,0 +1,3 @@
+- [ ] https://wisp.rex.wf is currently hosted on a VPS, which is restricted from accessing Instagram and Reddit causing those fetches to fail, possibly switch over to cloudflare?
+- [ ] Add more services to fetch from
+- [ ] Proper README and development instructions
